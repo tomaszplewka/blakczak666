@@ -1,0 +1,717 @@
+/* CSS Variables */
+:root {
+    --color-carolina-blue: rgb(39, 154, 241);
+    --color-black-coral: rgb(96, 101, 111);
+    --color-smoky-black: rgb(19, 17, 18);
+    --color-black-olive: rgb(52, 54, 51);
+    --font-stack: 'lemonada', 'Courier New', Courier, monospace !important;
+    --transition-bezier: all 0.35s cubic-bezier(.175,.885,.32,1.275);
+    --transition-ease: all 0.5s ease;
+}
+/* Fonts */
+@font-face {
+  font-family: 'lemonada';
+  src: url('../fonts/Lemonada-VariableFont_wght.ttf')  format('truetype');
+}
+/* Reset & general styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: var(--font-stack);
+    background-color: rgb(1, 78, 1);
+}
+section {
+    height: 100%;
+    max-height: 100%;
+    transition: var(--transition-ease) !important;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+/* Utilities */
+.roll-up {
+    overflow: hidden !important;
+    padding: 0 !important;
+    max-height: 0 !important;
+    transition: var(--transition-ease) !important;
+}
+.shrink {
+    animation: none;
+    transform: scale(0);
+    transition: all .5s cubic-bezier(.175,.885,.32,1.275);
+}
+.scaleX {
+    padding: 0;
+    transform: scaleX(0);
+    z-index: 0;
+    transition: all .5s .5s ease;
+}
+.hidden {
+    display: none !important;
+    opacity: 0;
+}
+.no-overflow {
+    overflow: hidden !important;
+}
+.show-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 0, 0, .5);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    z-index: 100;
+}
+.save-wrapper {
+    color: white;
+    padding: 1rem;
+}
+.load-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+.load-wrapper > button {
+    margin: 0.5rem;
+}
+/* Custom btns */
+.btn {
+    border: none;
+    appearance: none;
+    outline: none;
+    outline-offset: 0;
+    box-shadow: none;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    max-width: 100%;
+    background-color: var(--color-smoky-black);
+    color: white;
+    padding: 0.5rem 1.25rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-stack);
+    font-size: 2rem;
+    text-transform: uppercase;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition-bezier);
+}
+.btn::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    background-color: var(--color-carolina-blue);
+    transform: scaleX(0);
+    transition: var(--transition-bezier);
+}
+.btn:active,
+.btn:focus,
+.btn:hover,
+.side-btn:active,
+.side-btn:focus,
+.side-btn:hover {
+    color: var(--color-smoky-black);
+    background-color: var(--color-carolina-blue);
+    transition: var(--transition-bezier);
+}
+.btn:active::before,
+.btn:focus::before,
+.btn:hover::before,
+.btn:checked::before {
+    transform: scaleX(1);
+    transition: var(--transition-bezier);
+}
+.btn.disabled,
+.btn:disabled {
+    background-color: var(--color-black-coral);
+    color: white;
+    transition: var(--transition-bezier);
+}
+.btn.disabled:active::before,
+.btn.disabled:focus::before,
+.btn.disabled:hover::before,
+.btn:disabled::before {
+    transform: scaleX(0);
+    transition: var(--transition-bezier);
+}
+.btn span,
+.btn-invert span,
+.control-btn span {
+    position: relative;
+    transition: var(--transition-bezier);
+}
+.control-btn {
+    border: none;
+    appearance: none;
+    outline: none;
+    outline-offset: 0;
+    box-shadow: none;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1.25rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    font-size: 1.25rem;
+    width: auto;
+    font-family: var(--font-stack);
+    text-transform: uppercase;
+    color: white;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1em;
+    transition: var(--transition-bezier);
+    background-color: transparent;
+}
+.control-btn:active,
+.control-btn:focus,
+.control-btn:hover {
+    color: var(--color-carolina-blue) !important;
+    transition: var(--transition-bezier);
+}
+.control-btn.disabled {
+    color: var(--color-black-coral);
+    transition: var(--transition-bezier);
+}
+.control-btn.disabled:active::before,
+.control-btn.disabled:focus::before,
+.control-btn.disabled:hover::before {
+    transform: scaleX(0);
+    transition: var(--transition-bezier);
+}
+/* Welcome section */
+.welcome-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(0,0,0);
+}
+#welcome-section,
+#loader-section,
+#game-options-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+}
+#game-options-section {
+    z-index: 9;
+}
+/* Loader section */
+#loader-section {
+    z-index: 100;
+}
+#loader-section {
+    background-color: black;
+}
+.loader-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scaleX(1);
+    z-index: 100;
+    transition: all 0.5s ease;
+}
+.loader {
+    border-radius: 50%;
+    border-top: 5px solid white;
+    border-right: 5px solid green;
+    border-bottom: 5px solid black;
+    border-left: 5px solid blue;
+    width: 120px;
+    height: 120px;
+    animation: spin 1s linear infinite;
+    position: relative;
+    z-index: 101;
+    transition: all .5s cubic-bezier(.175,.885,.32,1.275);
+}
+@keyframes spin {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1) rotate(360deg); }
+}
+/* Game history section */
+.game-history {
+    background-color: black;
+}
+.game-history .go-back-wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 2rem;
+    padding-bottom: 0;
+}
+.game-history-wrapper {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+}
+.game-history-wrapper .btn {
+    margin: 0;
+    padding: 0;
+    font-size: 1.5rem;
+    flex: 1;
+    max-width: 150px;
+}
+/* Game section */
+#game-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    max-width: 1100px;
+    width: 100%;
+}
+.game-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+}
+#dealer-hand-wrapper {
+    position: relative;
+    width: 100%;
+}
+.dealer-hand-content {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    padding-bottom: 0;
+}
+.dealer-hand-content > div {
+    flex: 1;
+}
+.game-round {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+}
+.player-hand-info,
+.dealer-hand-info {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+.dealer-hand-name,
+.player-hand-name {
+    color: white;
+    text-align: center;
+    margin: .5rem;
+    padding: .5rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+}
+.player-hand-value,
+.dealer-hand-value {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    color: black;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-pile-wrapper {
+    position: relative;
+}
+.card-pile {
+    position: absolute;
+    top: 170px;
+    left: calc(50% + 100px - (755px / 9) / 2);
+    border: 1px solid black;
+    border-radius: 5px;
+    width: calc(755px / 9);
+    height: calc(1057px / 9);
+    background-position: center;
+    background-size: cover;
+    background-image: url('../imgs/back.jpg');
+    margin: auto;
+}
+.card-pile::before,
+.card-pile::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-position: center;
+    background-size: cover;
+    background-image: url('../imgs/back.jpg');
+}
+.card-pile::after {
+    background-image: url('../imgs/back.jpg');
+    top: -4px;
+    left: -4px;
+}
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 1rem auto;
+}
+.dealer-hand-card-wrapper {
+    transform: rotateZ(180deg);
+}
+.card {
+    width: 84.75px;
+    height: 117.75px;
+    background-position: center;
+    background-size: cover;
+    margin: 0.5rem;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+.game-feedback-text {
+    color: white;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+#player-hand-wrapper {
+    width: 100%;
+}
+.player-hand-content {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    padding-top: 0;
+    position: relative;
+}
+.player-hand-content > div {
+    flex: 1;
+}
+.player-hand-credit {
+    position: relative;
+}
+#credit {
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: black;
+    color: white;
+    padding: 0.5rem;
+}
+.bet-chips {
+    border: 1px solid black;
+    position: absolute;
+    top: -260px;
+    left: calc(50% - 50px);
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-image: url('../imgs/chip.png');
+}
+.player-hand-bet-value {
+    text-align: center;
+    color: white;
+    font-size: 1.25rem;
+    position: absolute;
+    top: -230px;
+    left: calc(25%);
+    width: 50%;
+    font-size: 1.25rem;
+}
+.player-hand-card {
+    border: none;
+}
+.dealer-hand-card {
+    border: none;
+}
+/* Bet form & inputs */
+#bet-form {
+    display: flex;
+    flex-direction: column;
+}
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    outline: none;
+    margin: 0;
+    border: none;
+    padding: 0.5rem 2.5rem;
+    background-color:rgb(1, 78, 1);
+    color: white;
+    height: 2.5rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    line-height: 1em;
+    transition: var(--transition-bezier);
+    text-align: center;
+    width: 150px;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+.number-input {
+    border: 0;
+    display: inline-flex;
+    margin: auto;
+}
+.number-input button {
+    outline:none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--color-smoky-black);
+    color: white;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    border-radius: 50%;
+}
+.number-input button:before,
+.number-input button:after {
+    display: inline-block;
+    position: absolute;
+    content: '';
+    width: 2rem;
+    height: 0.25rem;
+    background-color: white;
+    transform: translate(-50%, -50%);
+}
+.number-input button.plus:after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.number-input input[type=number] {
+  font-family: var(--font-stack);
+  max-width: 7rem;
+  padding: 0rem .5rem;
+  border: none;
+  border-width: 0 2px;
+  font-size: 2rem;
+  height: 3rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1em;
+}
+#bet-submit {
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 0;
+    margin: 0;
+    margin-top: 0.5rem;
+}
+/* Game options */
+#game-options-section.roll-up > * {
+    opacity: 0;
+    transition: var(--transition-ease);
+}
+.options > * {
+    opacity: 1;
+    transition: var(--transition-ease);
+}
+.floating-options {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+}
+.options,
+.next-round-wrapper {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transition: var(--transition-ease);
+}
+.next-round-wrapper {
+    background-color: transparent;
+}
+.next-round-wrapper .btn {
+    font-size: 1.5rem;
+    margin: 0;
+}
+.top-results {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.go-back-wrapper {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+.go-back-wrapper .control-btn {
+    background-color: transparent;
+}
+.top-results ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.top-results ul li {
+    font-size: 1.5rem;
+}
+.top-results ul li:hover {
+    background-color: transparent;
+}
+.history-rounds-wrapper {
+    transition: var(--transition-ease);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.history-rounds-wrapper .control-btn {
+    background-color: transparent;
+    margin: 0 1rem;
+}
+/* Sign-in button & what next button */
+#sign-in.btn,
+#what-next-btn.btn,
+#sign-in-options {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+#what-next-btn.btn {
+    width: 100%;
+    font-size: 1.5rem;
+    margin: 0;
+}
+#sign-in.btn::before,
+#what-next-btn.btn::before,
+#sign-in-options::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: var(--color-carolina-blue);
+    transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.social-icons,
+.choices {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    transform: translateY(-50%);
+    height: 100%;
+}
+li {
+    flex: 1;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+li:hover {
+    background-color: rgb(78, 78, 78);
+    transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+li a,
+li span {
+    display: inline-flex;
+    vertical-align: middle;
+    transform: translateY(100px);
+    transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+li span {
+    font-size: 1rem;
+}
+li a:hover,
+li span:hover {
+    opacity: 0.5;
+}
+#sign-in.btn:hover .btn-text,
+#what-next-btn.btn:hover .btn-text,
+#sign-in-options:hover .btn-text {
+    transform: translateY(-100px);
+}
+#sign-in.btn:hover .social-icons li a,
+#what-next-btn.btn:hover .choices li span,
+#sign-in-options:hover .social-icons li a {
+    transform: translateY(0);
+}
+#what-next-btn.btn:disabled {
+    pointer-events: none;
+}

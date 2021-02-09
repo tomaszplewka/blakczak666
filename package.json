@@ -1,0 +1,30 @@
+{
+  "name": "blakczak",
+  "version": "1.0.0",
+  "description": "simple blackjack",
+  "main": "index.js",
+  "scripts": {
+    "babel": "node_modules/.bin/babel src/index.js -w -o dist/assets/bundle.js",
+    "build": "node_modules/.bin/webpack --mode production",
+    "serve": "webpack serve --mode development"
+  },
+  "author": "Tomasz Plewka",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.12.13",
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.1",
+    "file-loader": "^6.2.0",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "firebase": "^8.2.6",
+    "sweetalert": "^2.1.2"
+  }
+}

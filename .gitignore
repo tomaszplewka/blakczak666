@@ -1,0 +1,18 @@
+# Dependency directories
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Optional npm cache directory
+.npm
+
+# Misc
+functions/
+public/
+.firebase/
+
+# Firebase config
+src/js/FirebaseConfig.js

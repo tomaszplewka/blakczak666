@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" sizes="96x96" href="assets/favicon-96x96.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+    <title>BlakCzak</title>
+</head>
+<body class="no-overflow">
+    <div class="game-history hidden">
+        <div class="go-back-wrapper">
+            <button id="game-history-go-back" class="control-btn">
+                <span>go back</span>
+            </button>
+        </div>
+        <div class="game-history-wrapper"></div>
+    </div>
+    <section id="loader-section" class="">
+        <div class="loader-wrapper">
+            <div>
+                <div class="loader"></div>
+            </div>
+        </div>
+    </section>
+    <section id="welcome-section" class="">
+        <div class="welcome-wrapper">
+            <button id="guest" class="btn">
+                <span>guest</span>
+            </button>
+            <button id="sign-in" class="btn">
+                <span class="btn-text">sign in</span>
+                <ul class="social-icons">
+                    <li>
+                        <a id="google" href="#" target="_blank">
+                            <i class="fab fa-google"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="github" href="#" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </li>
+                </ul>
+            </button>
+        </div>
+    </section>
+    <section id="game-section" class="">
+        <div class="game-wrapper">
+            <div id="dealer-hand-wrapper" class="">
+                <div class="dealer-hand-content">
+                    <div class="game-round"></div>
+                    <div class="dealer-hand-info">
+                        <h2 class="dealer-hand-name">dealer</h2>
+                        <span class="dealer-hand-value hidden"></span>
+                    </div>
+                    <div class="card-pile-wrapper">
+                        <div class="card card-pile"></div>
+                    </div>
+                </div>
+                <div class="card-wrapper dealer-hand-card-wrapper">
+                    <div class="card"></div>
+                    <div class="card"></div>
+                </div>
+            </div>
+            <div class="game-feedback">
+                <div class="game-feedback-text"></div>
+                <div class="next-round-wrapper hidden">
+                    <button id="next-round" class="btn">
+                        <span>next round</span>
+                    </button>
+                </div>
+            </div>
+            <div id="player-hand-wrapper" class="">
+                <div class="card-wrapper player-hand-card-wrapper">
+                    <div class="card"></div>
+                    <div class="card"></div>
+                </div>
+                <div class="player-hand-content">
+                    <div class="player-hand-credit">
+                        <div id="credit">
+                            1000
+                        </div>
+                        <div class="bet-chips hidden"></div>
+                        <span class="player-hand-bet-value"></span>
+                    </div>
+                    <div class="player-hand-info">
+                        <h2 class="player-hand-name"></h2>
+                        <span class="player-hand-value hidden"></span>
+                    </div>
+                    <div class="bet-form-wrapper">
+                        <form id="bet-form" class="">
+                            <div class="number-input input-wrapper">
+                                <button class="decrement" name="decrement"></button>
+                                <input id="bet-input" class="quantity input mx-3 create-tabindex" name="bet" min="50"
+                                    max="1000" step="25" value="50" type="number" required>
+                                <button class="increment plus" name="increment"></button>
+                            </div>
+                            <button id="bet-submit" type="submit" class="btn">
+                                <span>bet</span>
+                            </button>
+                        </form>
+                        <div class="player-hand-what-next hidden">
+                            <button id="what-next-btn" class="btn">
+                                <span class="btn-text">what next</span>
+                                <ul class="choices">
+                                    <li>
+                                        <span id="hit">hit</span>
+                                    </li>
+                                    <li>
+                                        <span id="stand">stand</span>
+                                    </li>
+                                    <li>
+                                        <span id="double-down">double down</span>
+                                    </li>
+                                </ul>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="game-options-section" class="roll-up">
+        <div class="options">
+            <button id="top-results" class="btn">
+                <span>top results</span>
+            </button>
+            <button id="history" class="btn">
+                <span>history</span>
+            </button>
+            <div class="history-rounds-wrapper roll-up">
+                <div></div>
+            </div>
+            <button id="save" class="btn">
+                <span>save</span>
+            </button>
+            <div class="save-wrapper roll-up"></div>
+            <button id="load" class="btn">
+                <span>load</span>
+            </button>
+            <div class="load-wrapper roll-up"></div>
+            <button id="restart" class="btn">
+                <span>restart</span>
+            </button>
+            <button id="sign-out" class="btn">
+                <span>sign-out</span>
+            </button>
+            <button id="sign-in-options" class="btn">
+                <span class="btn-text">sign in</span>
+                <ul class="social-icons">
+                    <li>
+                        <a id="google-options" href="#" target="_blank">
+                            <i class="fab fa-google"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="github-options" href="#" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </li>
+                </ul>
+            </button>
+        </div>
+        <div class="top-results hidden">
+            <div class="go-back-wrapper">
+                <button id="results-go-back" class="control-btn">
+                    <span>go back</span>
+                </button>
+            </div>
+            <div class="results-wrapper"></div>
+        </div>
+    </section>
+    <span id="" class="floating-options">
+        <i class="fas fa-bars fa-3x"></i>
+        <i class="fas fa-times fa-3x hidden"></i>
+    </span>
+    <script src="assets/bundle.js"></script>
+</body>
+</html>
