@@ -17,4 +17,4 @@ public/
 firebase.json
 
 # Firebase config
-src/js/FirebaseConfig.js
+# src/js/FirebaseConfig.js
